@@ -44,6 +44,9 @@ export default function Hero() {
           <div className="grid gap-16 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] xl:items-start">
             <header className="space-y-12">
               <div className="space-y-6">
+                <p className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-5 py-2 text-sm font-semibold text-emerald-200">
+                  Professor Associado III · Universidade de Brasília
+                </p>
                 <h1 className="text-4xl font-semibold text-white sm:text-5xl lg:text-[3.25rem]">
                   Liderança em produtividade pública, analytics e inteligência aplicada
                 </h1>
@@ -74,7 +77,7 @@ export default function Hero() {
               </div>
             </header>
 
-            <aside className="mx-auto w-full max-w-lg xl:mx-0">
+            <aside className="mx-auto w-full max-w-2xl xl:mx-0">
               <figure className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white/5 shadow-[0_45px_110px_rgba(2,6,23,0.75)] backdrop-blur-3xl">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.22),_transparent_60%)] opacity-100" />
                 <img
@@ -94,13 +97,14 @@ export default function Hero() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center shadow-[0_25px_70px_rgba(2,6,23,0.55)]"
+                className="w-full rounded-3xl border border-white/10 bg-white/5 p-6 text-center shadow-[0_25px_70px_rgba(2,6,23,0.55)]"
               >
-                <p className="inline-flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
-                  <stat.icon size={18} className="text-emerald-300" />
-                  {stat.label}
-                </p>
-                <p className="mt-6 text-3xl font-semibold text-white">{stat.value}</p>
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <p className="text-4xl font-semibold tracking-tight text-white">{stat.value}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
+                    {stat.label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

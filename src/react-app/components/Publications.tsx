@@ -186,6 +186,7 @@ export default function Publications() {
               const externalIdBadges = (work.externalIds || []).slice(0, 2);
               const primaryLink = work.url || (siteConfig.orcidId ? `https://orcid.org/${siteConfig.orcidId}` : defaultPublicationLink);
               const badgeLabel = buildBadgeLabel(work);
+              const keywordBadges = Array.isArray(work.keywords) ? work.keywords.slice(0, 4) : [];
 
               return (
                 <li key={work.putCode}>
@@ -227,9 +228,11 @@ export default function Publications() {
                           const href = resolveExternalIdHref(id);
                           const key = `${work.putCode}-${id.type}-${id.value}`;
                           const label = id.type.toUpperCase();
+                          const isDoi = id.type.toLowerCase() === 'doi';
+                          const keywordsForBadge = isDoi ? keywordBadges : [];
 
                           return (
-                            <li key={key}>
+                            <li key={key} className="flex flex-wrap items-center gap-2">
                               {href ? (
                                 <a
                                   href={href}
@@ -246,6 +249,17 @@ export default function Publications() {
                                   <span className="text-slate-400">{id.value}</span>
                                 </span>
                               )}
+
+                              {keywordsForBadge.length > 0
+                                ? keywordsForBadge.map((keyword, index) => (
+                                    <span
+                                      key={`${key}-keyword-${index}`}
+                                      className="rounded-full border border-emerald-300/40 bg-emerald-400/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-emerald-100"
+                                    >
+                                      {keyword}
+                                    </span>
+                                  ))
+                                : null}
                             </li>
                           );
                         })}

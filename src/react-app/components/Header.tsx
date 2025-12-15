@@ -44,7 +44,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/90 via-indigo-400/90 to-fuchsia-400/90 text-slate-900 shadow-lg">
             <span className="text-lg font-bold uppercase tracking-tight">
-              {siteConfig.profileDisplayName.slice(0, 2).toUpperCase()}
+              AS
             </span>
           </div>
           <div className="leading-tight">

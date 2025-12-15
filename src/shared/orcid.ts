@@ -14,6 +14,7 @@ export type OrcidWork = {
   externalIds: OrcidExternalId[];
   source?: string;
   authors?: string[];
+  keywords?: string[];
 };
 
 const ORCID_BASE_URL = "https://pub.orcid.org/v3.0";
@@ -102,6 +103,27 @@ const extractContributors = (summary: any): string[] => {
   return unique;
 };
 
+const extractKeywords = (summary: any): string[] => {
+  const keywords = summary?.keywords?.keyword;
+  if (!Array.isArray(keywords)) {
+    return [];
+  }
+
+  const values = keywords
+    .map((entry: any) => {
+      if (typeof entry === "string") {
+        return entry.trim();
+      }
+
+      const keywordValue = entry?.keyword?.value?.toString() || entry?.value?.toString();
+      return keywordValue ? keywordValue.trim() : undefined;
+    })
+    .filter((value: string | undefined): value is string => Boolean(value));
+
+  const unique = Array.from(new Set(values)).slice(0, 6);
+  return unique;
+};
+
 const mapSummaryToWork = (summary: any): OrcidWork | undefined => {
   if (!summary) {
     return undefined;
@@ -116,6 +138,7 @@ const mapSummaryToWork = (summary: any): OrcidWork | undefined => {
   const url = buildWorkUrl(summary, externalIds);
   const source = summary?.source?.["source-name"]?.value?.toString();
   const authors = extractContributors(summary);
+  const keywords = extractKeywords(summary);
 
   return {
     putCode,
@@ -127,15 +150,17 @@ const mapSummaryToWork = (summary: any): OrcidWork | undefined => {
     externalIds,
     source,
     authors,
+    keywords,
   } satisfies OrcidWork;
 };
 
 const enrichWorkWithDetail = async (orcidId: string, work: OrcidWork): Promise<OrcidWork> => {
   const hasAuthors = Array.isArray(work.authors) && work.authors.length > 0;
   const hasJournal = Boolean(work.journal);
+  const hasKeywords = Array.isArray(work.keywords) && work.keywords.length > 0;
   const hasPutCode = Boolean(work.putCode) && !work.putCode.startsWith("fallback-");
 
-  if ((hasAuthors && hasJournal) || !hasPutCode) {
+  if ((hasAuthors && hasJournal && hasKeywords) || !hasPutCode) {
     return work;
   }
 
@@ -157,6 +182,7 @@ const enrichWorkWithDetail = async (orcidId: string, work: OrcidWork): Promise<O
     const detailSource = detail?.source?.["source-name"]?.value?.toString();
     const detailYear = getWorkYear(detail);
     const detailUrl = buildWorkUrl(detail, detailExternalIds);
+    const detailKeywords = extractKeywords(detail);
 
     return {
       ...work,
@@ -166,6 +192,7 @@ const enrichWorkWithDetail = async (orcidId: string, work: OrcidWork): Promise<O
       url: detailUrl || work.url,
       externalIds: work.externalIds.length > 0 ? work.externalIds : detailExternalIds,
       authors: detailAuthors.length > 0 ? detailAuthors : work.authors,
+      keywords: detailKeywords.length > 0 ? detailKeywords : work.keywords,
     } satisfies OrcidWork;
   } catch {
     return work;
