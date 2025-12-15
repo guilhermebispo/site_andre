@@ -1,4 +1,4 @@
-import { Heart, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { siteConfig } from '@/shared/config';
 
 export default function Footer() {
