@@ -63,7 +63,7 @@ export default function Contact() {
           </p>
         </header>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="mx-auto mt-16 max-w-3xl">
           <div className="space-y-6">
             <div className="rounded-3xl border border-white/10 bg-slate-950/50 p-8 shadow-[0_25px_70px_rgba(2,6,23,0.7)] backdrop-blur-2xl">
               <h3 className="text-lg font-semibold uppercase tracking-[0.35em] text-slate-300">
@@ -137,75 +137,6 @@ export default function Contact() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 shadow-[0_35px_80px_rgba(2,6,23,0.75)] backdrop-blur-3xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_60%)] opacity-80" />
-            <div className="relative">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.35em] text-slate-300">
-                Mensagem rápida
-              </h3>
-              <p className="mt-3 text-sm text-slate-300">
-                Compartilhe contexto, resultados desejados e prazos. Voltarei rapidamente com possíveis caminhos.
-              </p>
-
-              <form className="mt-8 space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                    Nome completo
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white shadow-inner shadow-black/40 transition-all focus:border-emerald-300/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
-                    placeholder="Quem está escrevendo?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white shadow-inner shadow-black/40 transition-all focus:border-emerald-300/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                    Assunto
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white shadow-inner shadow-black/40 transition-all focus:border-emerald-300/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
-                    placeholder="Sobre o que conversaremos?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                    Mensagem
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    className="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white shadow-inner shadow-black/40 transition-all focus:border-emerald-300/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
-                    placeholder="Conte sobre seu desafio, contexto ou objetivo."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-indigo-400 px-6 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-slate-900 shadow-[0_20px_40px_rgba(56,189,248,0.35)] transition-transform duration-300 hover:scale-[1.01]"
-                >
-                  Enviar mensagem
-                </button>
-              </form>
             </div>
           </div>
         </div>
