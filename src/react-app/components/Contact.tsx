@@ -109,7 +109,7 @@ export default function Contact() {
                     <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Base de pesquisa</p>
                     <p className="mt-1 text-base font-semibold text-white">
                       Universidade de Brasília (UnB)
-                      <br /> Faculdade de Tecnologia · Departamento de Engenharia Elétrica
+                      <br /> Faculdade de Tecnologia · Departamento de Engenharia de Produção
                       <br /> Campus Darcy Ribeiro · Brasília · Brasil
                     </p>
                   </div>
