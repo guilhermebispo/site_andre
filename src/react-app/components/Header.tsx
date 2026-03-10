@@ -50,7 +50,7 @@ export default function Header() {
           <div className="leading-tight">
             <p className="text-xs uppercase tracking-[0.4em] text-slate-400">Prof. Dr.</p>
             <p className="text-base font-semibold text-slate-100">
-              {siteConfig.profileDisplayName}
+              {siteConfig.profileName}
             </p>
           </div>
         </div>
